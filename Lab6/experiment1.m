@@ -50,3 +50,7 @@ hold on
 semilogy(Q4Vgweak, Q4Iweak, 'mo')
 hold on
 semilogy(Q4Vgstrong, Q4Istrong, 'm*')
+
+%how to run the EKV
+%for transistor1, in command line say: 
+%[Is1, VT1, kappa1] = ekvfit(Q1Vg, -Q1I, 4e-4, 'on')
