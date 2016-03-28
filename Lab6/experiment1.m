@@ -39,7 +39,7 @@ load VT4.csv
 % Q4Vgweak = exp1nMOSQ4Vg(1:150);
 % Q4Istrong = exp1nMOSQ4I(151:4:500);
 % Q4Vgstrong = exp1nMOSQ4Vg(151:4:500);
-% 
+%  
 % Q1I = [Q1Iweak, Q1Istrong];
 % Q1Vg = [Q1Vgweak, Q1Vgstrong];
 % Q2I = [Q2Iweak, Q2Istrong];
@@ -48,7 +48,7 @@ load VT4.csv
 % Q3Vg = [Q3Vgweak, Q3Vgstrong];
 % Q4I = [Q4Iweak, Q4Istrong];
 % Q4Vg = [Q4Vgweak, Q4Vgstrong];
-% 
+%  
 % semilogy(Q1Vgweak, Q1Iweak, 'ro')
 % hold on
 % semilogy(Q1Vgstrong, Q1Istrong, 'r*')
@@ -70,41 +70,61 @@ load VT4.csv
 %[Is1, VT1, kappa1] = ekvfit(Q1Vg, -Q1I, 4e-4, 'on')
 
 %%Making the plot with EKV values
-Ut = 0.025;
-Vs = 0;
-Vd = 5;
-Fit_IQ1= Q1I.*(log(1+exp(kappa1.*(Q1Vg-VT1)-Vs)/2*Ut)).^2;
-Fit_IQ2= Q2I.*(log(1+exp(kappa2.*(Q2Vg-VT2)-Vs)/2*Ut)).^2;
-Fit_IQ3= Q3I.*(log(1+exp(kappa3.*(Q3Vg-VT3)-Vs)/2*Ut)).^2;
-Fit_IQ4= Q4I.*(log(1+exp(kappa4.*(Q4Vg-VT4)-Vs)/2*Ut)).^2;
-
-semilogy(Q1Vg, Fit_IQ1, 'k')
-hold on
-semilogy(Q1Vg, Q1I, 'ko')
-hold on
-semilogy(Q2Vg, Fit_IQ2, 'm')
-hold on
-semilogy(Q2Vg, Q2I, 'm*')
-hold on
-semilogy(Q3Vg, Fit_IQ3, 'r')
-hold on
-semilogy(Q3Vg, Q3I, 'r>')
-hold on
-semilogy(Q4Vg, Fit_IQ4, 'b')
-hold on
-semilogy(Q4Vg, Q4I, 'b.')
-
-xlabel('Gate voltage (V)')
-ylabel('Channel current (A)')
-legend('Q1 Theoretical', 'Q1 Data', 'Q2 Theoretical', 'Q2 Data', 'Q3 Theoretical', 'Q3 Data', 'Q4 Theoretical', 'Q4 Data')
-title('Channel current for different transistors with /2Ut in forward current theoretical')
+% Ut = 0.025;
+% Vs = 0;
+% Vd = 5;
+% Fit_IQ1= Q1I.*(log(1+exp(kappa1.*(Q1Vg-VT1)-Vs)/(2*Ut))).^2;
+% Fit_IQ2= Q2I.*(log(1+exp(kappa2.*(Q2Vg-VT2)-Vs)/(2*Ut))).^2;
+% Fit_IQ3= Q3I.*(log(1+exp(kappa3.*(Q3Vg-VT3)-Vs)/(2*Ut))).^2;
+% Fit_IQ4= Q4I.*(log(1+exp(kappa4.*(Q4Vg-VT4)-Vs)/(2*Ut))).^2;
+% 
+% semilogy(Q1Vg, Fit_IQ1, 'k')
+% hold on
+% semilogy(Q1Vg, Q1I, 'ko')
+% hold on
+% semilogy(Q2Vg, Fit_IQ2, 'm')
+% hold on
+% semilogy(Q2Vg, Q2I, 'm*')
+% hold on
+% semilogy(Q3Vg, Fit_IQ3, 'r')
+% hold on
+% semilogy(Q3Vg, Q3I, 'r>')
+% hold on
+% semilogy(Q4Vg, Fit_IQ4, 'b')
+% hold on
+% semilogy(Q4Vg, Q4I, 'b.')
+% 
+% xlabel('Gate voltage (V)')
+% ylabel('Channel current (A)')
+% legend('Q1 Theoretical', 'Q1 Data', 'Q2 Theoretical', 'Q2 Data', 'Q3 Theoretical', 'Q3 Data', 'Q4 Theoretical', 'Q4 Data')
+% title('Channel current for different transistors with /2Ut in forward current theoretical')
 
 %% percentage difference
 % Also, make a semilog (i.e., make the x-axis log) plot showing the percentage
+% meani = ones([1, length(Q1I)]);
+% for i = 1:length(Q1I)
+%     meani(i) = (Q1I(i) + Q2I(i) + Q3I(i) + Q4I(i))./4;
+% end
 
-% meanI = (Q1I + Q2I + Q3I + Q4I)/4;
-% 
-% Q1diff = ((Q1I-meanI)/((Q1I + meanI)/2))*100;
-% Q2diff = ((Q2I-meanI)/((Q2I + meanI)/2))*100;
-% Q3diff = ((Q3I-meanI)/((Q3I + meanI)/2))*100;
-% Q4diff = ((Q4I-meanI)/((Q4I + meanI)/2))*100;
+meanI = (Q1I + Q2I + Q3I + Q4I)./4
+
+Q1diff = ((Q1I-meanI)./((Q1I + meanI)./2)).*100;
+Q2diff = ((Q2I-meanI)./((Q2I + meanI)./2)).*100;
+Q3diff = ((Q3I-meanI)./((Q3I + meanI)./2)).*100;
+Q4diff = ((Q4I-meanI)./((Q4I + meanI)./2)).*100;
+
+semilogx(-Q1I, Q1diff, 'ro')
+hold on 
+semilogx(-Q2I, Q2diff, 'bo')
+hold on
+semilogx(-Q3I, Q3diff, 'ko')
+hold on
+semilogx(-Q4I, Q4diff, 'mo')
+xlabel('Channel current (A)')
+ylabel('Percentage difference (%)')
+title('Percentage difference of all transistors')
+%title('Percentage difference of Q2, Q3, and Q4')
+limits = [10^(-6) 10^(-2) -50 50]
+axis(limits)
+%legend('Q2 difference to mean current', 'Q3 difference to mean current', 'Q4 difference to mean current')
+legend('Q1 difference to mean current', 'Q2 difference to mean current', 'Q3 difference to mean current', 'Q4 difference to mean current')
