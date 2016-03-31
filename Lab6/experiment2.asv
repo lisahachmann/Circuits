@@ -52,9 +52,9 @@ ratiosI10 = exp2SeriesI_Vds10mV./exp2I_Vds10mV;
 Vg10 = exp2Vg_Vds10mV
 %Vds at Vdd
 figure
-plot(exp2Vg_Vds10mV, (ratiosI10), 'o')
+plot(exp2Vg_Vds10mV, abs(ratiosI10), 'o')
 hold on
-plot(exp2Vg_Vds10mV, (ratiopI10), 'ro')
+plot(exp2Vg_Vds10mV, abs(ratiopI10), 'ro')
 xlabel('Gate voltage (V)')
 ylabel('Ratio of currents')
 legend('Ratio of series to individual transistors', 'Ratio of parallel to individual transistors')
