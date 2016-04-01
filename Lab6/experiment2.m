@@ -51,12 +51,18 @@ ratiopI10 = exp2ParallelI_Vds10mV./exp2I_Vds10mV;
 ratiosI10 = exp2SeriesI_Vds10mV./exp2I_Vds10mV;
 Vg10 = exp2Vg_Vds10mV
 %Vds at Vdd
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58086e2da97e03de1091d99b15bf927f3be48ef4
 figure
 plot(exp2Vg_Vds10mV, (ratiosI10), 'o')
 hold on
 plot(exp2Vg_Vds10mV, (ratiopI10), 'ro')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58086e2da97e03de1091d99b15bf927f3be48ef4
 xlabel('Gate voltage (V)')
 ylabel('Ratio of currents')
 legend('Ratio of series to individual transistors', 'Ratio of parallel to individual transistors')

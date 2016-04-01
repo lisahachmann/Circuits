@@ -31,6 +31,9 @@ Q1Vgweak = exp1nMOSQ1Vg(1:150);
 Q1Istrong = exp1nMOSQ1I(151:4:500);
 Q1Vgstrong = exp1nMOSQ1Vg(151:4:500);
 
+
+
+
 Q2Iweak = exp1nMOSQ2I(1:150);
 Q2Vgweak = exp1nMOSQ2Vg(1:150);
 Q2Istrong = exp1nMOSQ2I(151:4:500);
@@ -44,6 +47,10 @@ Q4Vgweak = exp1nMOSQ4Vg(1:150);
 Q4Istrong = exp1nMOSQ4I(151:4:500);
 Q4Vgstrong = exp1nMOSQ4Vg(151:4:500);
 
+
+
+ 
+
 Q1I = [Q1Iweak, Q1Istrong];
 Q1Vg = [Q1Vgweak, Q1Vgstrong];
 Q2I = [Q2Iweak, Q2Istrong];
@@ -52,6 +59,10 @@ Q3I = [Q3Iweak, Q3Istrong];
 Q3Vg = [Q3Vgweak, Q3Vgstrong];
 Q4I = [Q4Iweak, Q4Istrong];
 Q4Vg = [Q4Vgweak, Q4Vgstrong];
+
+
+
+% figure
 
 % semilogy(Q1Vgweak, Q1Iweak, 'ro')
 % hold on
@@ -120,6 +131,9 @@ legend('Q1 Theoretical', 'Q1 Data', 'Q2 Theoretical', 'Q2 Data', 'Q3 Theoretical
 title('Channel current for different transistors with /2Ut in forward current theoretical')
 
 
+
+
+
 %% percentage difference
 % Also, make a semilog (i.e., make the x-axis log) plot showing the percentage
 % meani = ones([1, length(Q1I)]);
@@ -149,4 +163,8 @@ title('Percentage difference of Q2, Q3, and Q4')
 limits = [10^(-6) 10^(-2) -50 50]
 axis(limits)
 legend('M2 difference to mean current', 'M3 difference to mean current', 'M4 difference to mean current')
+
 %legend('M1 difference to mean current', 'M2 difference to mean current', 'M3 difference to mean current', 'M4 difference to mean current')
+
+
+
