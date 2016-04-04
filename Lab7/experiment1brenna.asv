@@ -31,7 +31,7 @@ load V_V225Vb2.csv
 load V1V2diff500.csv
 
 
-V_V220Vbt= exp(log(V_V215Vbt)+log(V_V225Vbt)./(2))
+%V_V220Vbt= exp(log(V_V215Vbt)+log(V_V225Vbt)./(2))
 
 %include a single plot showing I1, I2, I1 − I2, and I1 + I2, as a function of V1 − V2 for 
 %all three values of V2 that you used. 

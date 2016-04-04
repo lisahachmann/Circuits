@@ -31,24 +31,22 @@ I1I2sum15Vbt = (abs(I1_V215Vbt) + abs(I2_V215Vbt));
 I1I2diff25Vbt = abs(I1_V225Vbt) - abs(I2_V225Vbt);
 I1I2sum25Vbt = abs(I1_V225Vbt) + abs(I2_V225Vbt);
 figure 
-semilogy(V1V2diff500(1:4:500),  abs(I1_V215Vbt(1:4:500)), 'r>')
-hold on
-semilogy(V1V2diff500(1:4:500), abs(I2_V215Vbt(1:4:500)), 'b>')
-semilogy(V1V2diff500(1:4:500), abs(I1I2diff15Vbt(1:4:500)), 'm>')
-semilogy(V1V2diff500(1:4:500), abs(I1I2sum15Vbt(1:4:500)), 'g>')
 semilogy(V1V2diff500(1:4:500),  abs(I1_V220Vbt(1:4:500)), 'ro')
+hold on
 semilogy(V1V2diff500(1:4:500), abs(I2_V220Vbt(1:4:500)), 'bo')
 semilogy(V1V2diff500(1:4:500), abs((I1I2diff20Vbt(1:4:500))), 'mo')
 semilogy(V1V2diff500(1:4:500), abs(I1I2sum20Vbt(1:4:500)), 'go')
+semilogy(V1V2diff500(1:4:500),  abs(I1_V215Vbt(1:4:500)), 'r>')
+semilogy(V1V2diff500(1:4:500), abs(I2_V215Vbt(1:4:500)), 'b>')
+semilogy(V1V2diff500(1:4:500), abs(I1I2diff15Vbt(1:4:500)), 'm>')
+semilogy(V1V2diff500(1:4:500), abs(I1I2sum15Vbt(1:4:500)), 'g>')
 semilogy(V1V2diff500(1:4:500),  abs(I1_V225Vbt(1:4:500)), 'r*')
 semilogy(V1V2diff500(1:4:500), abs(I2_V225Vbt(1:4:500)), 'b*')
 semilogy(V1V2diff500(1:4:500), abs(I1I2diff25Vbt(1:4:500)), 'm*')
 semilogy(V1V2diff500(1:4:500), abs(I1I2sum25Vbt(1:4:500)), 'g*')
-title('Currents Vs V1-V2')
+title('Ti')
 xlabel('Difference in voltage between V1 and V2, (Voltage)', 'FontSize', 11)
 ylabel('Current (Amps)', 'FontSize', 11)
-legend('I1 V2=1.5V', 'I2 V2=1.5V', '|I1-I2| V2=1.5V', 'I1+I2 V2=1.5V', 'I1 V2=2V', 'I2 V2=2V', '|I1-I2| V2=2V', 'I1+I2 V2=2V', 'I1 V2=2.5V', 'I2 V2=2.5V', '|I1-I2| V2=2.5V', 'I1+I2 V2=2.5V')  
-
 
 
 %Also include a plot showing the common-source node voltage,
