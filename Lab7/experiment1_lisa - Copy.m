@@ -19,38 +19,35 @@ load V_V220.csv
 load V_V220Vbt.csv
 load V_V225.csv
 load V_V225Vbt.csv
-load V1V2diff500.csv
 
-%include a single plot showing I1, I2, I1 − I2, and I1 + I2, as a function of V1 − V2 for 
-%all three values of V2 that you used. 
-
-I1I2diff20Vbt = abs(I1_V220Vbt) - abs(I2_V220Vbt);
-I1I2sum20Vbt = (abs(I1_V220Vbt) + abs(I2_V220Vbt));
-I1I2diff15Vbt = abs(I1_V215Vbt) - abs(I2_V215Vbt);
-I1I2sum15Vbt = (abs(I1_V215Vbt) + abs(I2_V215Vbt));
-I1I2diff25Vbt = abs(I1_V225Vbt) - abs(I2_V225Vbt);
-I1I2sum25Vbt = abs(I1_V225Vbt) + abs(I2_V225Vbt);
-
+%Make plot similar to the ones that you made for the lower bias current
 figure 
-semilogy(V1V2diff500(1:4:500),  abs(I1_V215Vbt(1:4:500)), 'r>')
+semilogy(V1V2diff,  I1_V220, 'ro', 'Markersize', 12)
 hold on
-semilogy(V1V2diff500(1:4:500), abs(I2_V215Vbt(1:4:500)), 'b>')
-semilogy(V1V2diff500(1:4:500), abs(I1I2diff15Vbt(1:4:500)), 'm>')
-semilogy(V1V2diff500(1:4:500), abs(I1I2sum15Vbt(1:4:500)), 'g>')
-semilogy(V1V2diff500(1:4:500),  abs(I1_V220Vbt(1:4:500)), 'ro')
-semilogy(V1V2diff500(1:4:500), abs(I2_V220Vbt(1:4:500)), 'bo')
-semilogy(V1V2diff500(1:4:500), abs((I1I2diff20Vbt(1:4:500))), 'mo')
-semilogy(V1V2diff500(1:4:500), abs(I1I2sum20Vbt(1:4:500)), 'go')
-semilogy(V1V2diff500(1:4:500),  abs(I1_V225Vbt(1:4:500)), 'r*')
-semilogy(V1V2diff500(1:4:500), abs(I2_V225Vbt(1:4:500)), 'b*')
-semilogy(V1V2diff500(1:4:500), abs(I1I2diff25Vbt(1:4:500)), 'm*')
-semilogy(V1V2diff500(1:4:500), abs(I1I2sum25Vbt(1:4:500)), 'g*')
-title('Currents Vs V1-V2')
-xlabel('Difference in voltage between V1 and V2, (Voltage)', 'FontSize', 11)
-ylabel('Current (Amps)', 'FontSize', 11)
-legend('I1 V2=1.5V', 'I2 V2=1.5V', '|I1-I2| V2=1.5V', 'I1+I2 V2=1.5V', 'I1 V2=2V', 'I2 V2=2V', '|I1-I2| V2=2V', 'I1+I2 V2=2V', 'I1 V2=2.5V', 'I2 V2=2.5V', '|I1-I2| V2=2.5V', 'I1+I2 V2=2.5V')  
+semilogy(V1V2diff, I2_V220, 'bo', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I1_V220 - I2_V220, 'mo', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I1_V220 + I2_V220, 'ko', 'Markersize', 12)
+hold on
+% semilogy(V1V2diff,  I1_V215, 'r>', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I2_V215, 'y>', 'Markersize', 12)
+% hold on
+% semilogy(V1V2diff, I1_V215 - I2_V215, 'm>', 'Markersize', 12)
+% hold on
+% semilogy(V1V2diff, I1_V215 + I2_V215, 'k>', 'Markersize', 12)
+hold on
+semilogy(V1V2diff,  I1_V225, 'r*', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I2_V225, 'b*', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I1_V225 - I2_V225, 'm*', 'Markersize', 12)
+hold on
+semilogy(V1V2diff, I1_V225 + I2_V225, 'k*', 'Markersize', 12)
 
-
+xlabel('Difference in voltage between V1 and V2, (Voltage)', 'FontSize', 13)
+ylabel('Difference in current between I1 and I2 (Amps)', 'FontSize', 13)
 
 %Also include a plot showing the common-source node voltage,
 %V , as a function of V1 − V2 for all three values of V2. 
@@ -59,6 +56,7 @@ figure
 plot(V1V2diff, V_V215, 'mo')
 hold on
 plot(V1V2diff, V_V220, 'ro')
+hold on
 plot(V1V2diff, V_V225, 'bo')
 xlabel('Difference in V1 and V2 (V)', 'FontSize', 13)
 ylabel('Voltage at node V (V)', 'FontSize', 13)
@@ -75,7 +73,7 @@ P_below= polyfit(VbtVdiff(175:325),I1_V220Vbt(175:325)-I2_V220Vbt(175:325),1);
 yfit = P_below(1)*VbtVdiff(175:325)+P_below(2);
 hold on;
 figure
-plot(VbtVdiff(175:325),yfit,'r', 'Markersize', 20);
+plot(VbtVdiff(175:325),yfit,'r', 'linewidth', 3);
 hold on
 plot(VbtVdiff, I1_V220Vbt - I2_V220Vbt, 'bo')
 xlabel('Difference between V1 and V2 (V)')
@@ -90,7 +88,7 @@ P_above = polyfit(V1V2diff(75:125),I1_V220(75:125)-I2_V220(75:125),1);
 yfit = P_above(1)*V1V2diff(75:125)+P_above(2);
 hold on;
 figure
-plot(V1V2diff(75:125),yfit,'r', 'Markersize', 20);
+plot(V1V2diff(75:125),yfit,'r', 'linewidth', 3);
 hold on
 plot(V1V2diff, I1_V220 - I2_V220, 'bo')
 xlabel('Difference between V1 and V2 (V)')
