@@ -11,14 +11,18 @@ load exp2VoutSweep.csv
 load exp2Iout_SwVdm_VoutFixed.csv
 load exp2VoutFixed.csv
 
-P1 = polyfit(exp2Vdm(150:155),exp2Vout(150:155),1);
-yfit1 = P1(1)*exp2Vdm(150:155)+P1(2);
+P1 = polyfit(exp2Vdm(245:260),exp2Vout(245:260),1);
+yfit1 = P1(1)*exp2Vdm(245:260)+P1(2);
+limits= [-0.3, 0.3, 1, 5.25]
 
 figure
 plot(exp2Vdm, exp2Vout, 'bo');
 hold on
-plot(exp2Vdm(150:155),yfit1,'r');
-
+plot(exp2Vdm(245:260),yfit1,'r', 'Linewidth', 2);
+xlabel('V1-V2 (V)')
+ylabel('Output voltage (V)')
+axis(limits)
+legend('Data Measurements', 'Theoretical fit line')
 % Fit a straight line to the shallow part of this output current–voltage
 % characteristic, which should correspond to the range of output voltages over
 % which the gain of the circuit is large, and determine the
@@ -26,13 +30,13 @@ plot(exp2Vdm(150:155),yfit1,'r');
 % line. In your report,include a plot showing the output current-voltage 
 % characteristic along with the best-fit line.
 
-P2 = polyfit(exp2VoutSweep(90:120),-exp2Iout_SwV(90:120),1);
-yfit2 = P2(1)*exp2VoutSweep(90:120)+P2(2);
+P2 = polyfit(exp2VoutSweep(90:300),-exp2Iout_SwV(90:300),1);
+yfit2 = P2(1)*exp2VoutSweep(90:300)+P2(2);
 
 figure
-semilogy(exp2VoutSweep, -exp2Iout_SwV, 'bo')
+plot(exp2VoutSweep, -exp2Iout_SwV, 'bo')
 hold on
-semilogy(exp2VoutSweep(90:120), yfit2, 'r', 'Linewidth', 2 )
+plot(exp2VoutSweep(90:300), yfit2, 'r', 'Linewidth', 2 )
 xlabel('Sweep of the output voltage')
 ylabel('Output current')
 
