@@ -34,12 +34,12 @@ yfit1 = P1(1)*exp2Vdm(245:260)+P1(2);
 P2 = polyfit(exp2VoutSweep(90:300),-exp2Iout_SwV(90:300),1);
 yfit2 = P2(1)*exp2VoutSweep(90:300)+P2(2);
 
-% figure
-% plot(exp2VoutSweep, -exp2Iout_SwV, 'bo')
-% hold on
-% plot(exp2VoutSweep(90:300), yfit2, 'r', 'Linewidth', 2 )
-% xlabel('Sweep of the output voltage')
-% ylabel('Output current')
+figure
+plot(exp2VoutSweep, -exp2Iout_SwV, 'bo')
+hold on
+plot(exp2VoutSweep(90:300), yfit2, 'r', 'Linewidth', 2 )
+xlabel('Sweep of the output voltage')
+ylabel('Output current')
 
 % Fit a straight line to the curve around where V1 = V2 and extract a
 % value of the incremental transconductance gain of the circuit with the output 
