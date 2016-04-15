@@ -37,13 +37,14 @@ P1 = polyfit(exp2VoutSweep(100:400),exp2IoutSweepVout(100:400),1);
 yfit1 = P1(1)*exp2VoutSweep(100:400)+P1(2);
 
 figure 
-limits = [0, 5, 1e-7, 1e-5]
+limits = [0, 5, 1e-7, 0.5e-5]
 semilogy(exp2VoutSweep, exp2IoutSweepVout, 'ro')
 hold on
 semilogy(exp2VoutSweep(100:400), yfit1, 'b', 'linewidth', 3)
 xlabel('Output voltage (V)')
 ylabel('Output current (A)')
 title('Iout vs Vout')
+axis(limits)
 legend('Measured data', 'Best fit line')
 title('Output voltage-current characteristics')
 
