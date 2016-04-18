@@ -37,13 +37,14 @@ P1 = polyfit(exp2VoutSweep(100:400),exp2IoutSweepVout(100:400),1);
 yfit1 = P1(1)*exp2VoutSweep(100:400)+P1(2);
 
 figure 
-limits = [0, 5, 1e-7, 1e-5]
+limits = [0, 5, 1e-7, 0.5e-5]
 semilogy(exp2VoutSweep, exp2IoutSweepVout, 'ro')
 hold on
 semilogy(exp2VoutSweep(100:400), yfit1, 'b', 'linewidth', 3)
 xlabel('Output voltage (V)')
 ylabel('Output current (A)')
 title('Iout vs Vout')
+axis(limits)
 legend('Measured data', 'Best fit line')
 title('Output voltage-current characteristics')
 
@@ -56,6 +57,18 @@ title('Output voltage-current characteristics')
 %  Fit a straight line to the curve around where Vdm = 0 and extract a
 % value of the incremental transconductance gain of the circuit with the
 % output voltage fixed from the slope of the best-fit line. Also, record
-%the limiting values of Iout in both the positive and the negative 
+% the limiting values of Iout in both the positive and the negative 
 % directions. In your report, include a plot showing Iout versus Vdm along
-%with the best-fit line.
+% with the best-fit line.
+
+P2 = polyfit(exp2VdmSweep(200:300),exp2IoutSweepVdm(200:300),1);
+yfit3 = P2(1)*exp2VdmSweep(200:300)+P2(2);
+
+figure
+plot(exp2VdmSweep, exp2IoutSweepVdm, 'ro')
+hold on
+plot(exp2VdmSweep(200:300), exp2IoutSweepVdm(200:300), 'k', 'linewidth', 3)
+xlabel('Vdm (V)')
+ylabel('Output current (A)')
+legend('Measured data', 'Best fit line')
+title('Vdm vs Iout')
