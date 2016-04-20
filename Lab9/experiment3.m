@@ -20,21 +20,21 @@ Vout = SmallWave_Zoomed(:,3);
 Voutcut = Vout(3100:6000);
 Vin = SmallWave_Zoomed(:,2);
 Vincut = Vin(3100:6000);
- 
-figure 
-plot(t, Vin, 'r')
-hold on
-plot(t, Vout)
-hold on
-V = 2.5;
-gm = 4.498*10^(-5);
-C = 1*10^-9;
-Tau = (1/gm)*C;
-y1 = V.*(1 - exp(-tcut./Tau));
-plot(tcut, y1, 'k')
-xlabel('Time (sec)')
-ylabel('Voltage (V)')
-legend('Input voltage signal', 'Output voltage signal', 'Theoretical fit')
+%  
+% figure 
+% plot(t, Vin, 'r')
+% hold on
+% plot(t, Vout)
+% hold on
+% V = 2.5;
+% gm = 4.498*10^(-5);
+% C = 1*10^-9;
+% Tau = (1/gm)*C;
+% y1 = V.*(1 - exp(-tcut./Tau));
+% plot(tcut, y1, 'k')
+% xlabel('Time (sec)')
+% ylabel('Voltage (V)')
+% legend('Input voltage signal', 'Output voltage signal', 'Theoretical fit')
 
 % if you want it zoomed out
 tZ = SmallWave_ZoomedOut(:,1);
@@ -77,19 +77,20 @@ VoutZstepdown = VoutZ(6250:6500);
 %the extracted slew rates.
 % 
 
-% tl = Large5kHz2V(:,1)
-% tlcut = tl(1200:2600);
-% sigl = Large5kHz2V(:,3);
-% siglcut = sigl(1200:2600);
-% 
-% P4 = polyfit(tlcut,siglcut,1);
-% yfit4 = P4(1)*tlcut+P4(2);
-% 
-% figure
-% plot(Large5kHz2V(:,1), Large5kHz2V(:,2), 'r')
-% hold on
-% plot(Large5kHz2V(:,1), Large5kHz2V(:,3), 'b')
-% plot(tlcut, yfit4, 'k', 'linewidth', 2)
-% xlabel('Time (sec)')
-% ylabel('Voltage (V)')
-% legend('Input signal', 'Output signal', 'Best fit line')
+tl = Large5kHz2V(:,1)
+tlcut = tl(1200:2600);
+sigl = Large5kHz2V(:,3);
+siglcut = sigl(1200:2600);
+
+P4 = polyfit(tlcut,siglcut,1);
+yfit4 = P4(1)*tlcut+P4(2);
+ 
+figure
+plot(Large5kHz2V(:,1), Large5kHz2V(:,2), 'r')
+hold on
+plot(Large5kHz2V(:,1), Large5kHz2V(:,3), 'b')
+plot(tlcut, yfit4, 'k', 'linewidth', 2)
+xlabel('Time (sec)')
+ylabel('Voltage (V)')
+legend('Input signal', 'Output signal', 'Best fit line')
+title('Slew rate as seen with a 5kHz large amplitude signal')
