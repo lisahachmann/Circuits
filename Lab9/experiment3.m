@@ -77,20 +77,26 @@ VoutZstepdown = VoutZ(6250:6500);
 %the extracted slew rates.
 % 
 
-tl = Large5kHz2V(:,1)
-tlcut = tl(1200:2600);
-sigl = Large5kHz2V(:,3);
-siglcut = sigl(1200:2600);
+% tl = Large5kHz2V(:,1)
+% tlcut = tl(1200:2600);
+% sigl = Large5kHz2V(:,3);
+% siglcut = sigl(1200:2600);
+% 
+% P4 = polyfit(tlcut,siglcut,1);
+% yfit4 = P4(1)*tlcut+P4(2);
+%  
+% figure
+% plot(Large5kHz2V(:,1), Large5kHz2V(:,2), 'r')
+% hold on
+% plot(Large5kHz2V(:,1), Large5kHz2V(:,3), 'b')
+% plot(tlcut, yfit4, 'k', 'linewidth', 2)
+% xlabel('Time (sec)')
+% ylabel('Voltage (V)')
+% legend('Input signal', 'Output signal', 'Best fit line')
+% title('Slew rate as seen with a 5kHz large amplitude signal')
 
-P4 = polyfit(tlcut,siglcut,1);
-yfit4 = P4(1)*tlcut+P4(2);
- 
-figure
-plot(Large5kHz2V(:,1), Large5kHz2V(:,2), 'r')
-hold on
-plot(Large5kHz2V(:,1), Large5kHz2V(:,3), 'b')
-plot(tlcut, yfit4, 'k', 'linewidth', 2)
-xlabel('Time (sec)')
-ylabel('Voltage (V)')
-legend('Input signal', 'Output signal', 'Best fit line')
-title('Slew rate as seen with a 5kHz large amplitude signal')
+%%slew rate
+Isat = 10^(-6.5); 
+c = 1e-9;
+A = 300;
+Slew = (Isat/C) * A
